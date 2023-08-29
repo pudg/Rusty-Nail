@@ -1,4 +1,4 @@
-# Rust Nail
+# Rusty Nail
 REST API written in Rust using Actix-web/Diesel frameworks, and PostgreSQL database.
 
 # Install
@@ -10,6 +10,8 @@ The project uses _PostgreSQL_ and _diesel\_cli_  for the backends database manag
 Within the project directory, open a terminal and run the following. Change the `username` and `password` portions of the `DATABASE_URL` to your corresponding postgres database.
 
     echo DATABASE_URL=postgres://username:password@localhost/rusty_nail > .env
+    echo HOST="127.0.0.1" > .env
+    echo PORT=8080 > .env
 
 Create database, initial migrations, and table to store cocktail recipes.
 
@@ -19,6 +21,12 @@ Create database, initial migrations, and table to store cocktail recipes.
 Apply migrations to generate `schema.rs` file.
 
     diesel migration run
+
+## Run
+Build and run the project binary.
+
+    cargo build --release
+    ./target/release/rusty_nail 
 
 
 ## TODO

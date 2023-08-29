@@ -50,8 +50,9 @@ async fn create(recipes: web::Json<Recipe>) -> Result<HttpResponse, Error> {
 /// 
 /// # Arguments
 ///     * `id` - An integer denoting the Recipe to be updated, or created if it doesn't exist.
+///     * `recipe` - A json object denoting Recipe to be updated or created.
 #[put("/recipes/{id}")]
-async fn update(recipe: web::Json<Recipe>) -> Result<HttpResponse, Error> {
+async fn update(id: web::Path<i32>, recipe: web::Json<Recipe>) -> Result<HttpResponse, Error> {
     Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT PUT /recipes/{id}"})))
 }
 
@@ -64,6 +65,7 @@ async fn delete(id: web::Path<i32>) -> Result<HttpResponse, Error> {
     Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT DELETE /recipes/{id}"})))
 }
 
+/// Registers all route handlers.
 pub fn init_routes(config: &mut web::ServiceConfig) {
     config.service(find_all);
     config.service(find);
