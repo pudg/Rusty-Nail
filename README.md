@@ -1,5 +1,5 @@
 # Rusty Nail
-REST API written in Rust using Actix-web/Diesel frameworks, and PostgreSQL database.
+REST API written in Rust using Actix-web, and Diesel/PostgreSQL database.
 
 # Install
 ## Setup Database
@@ -26,12 +26,35 @@ Apply migrations to generate `schema.rs` file.
 Build and run the project binary.
 
     cargo build --release
-    ./target/release/rusty_nail 
+    ./target/release/rusty_nail
+
+## API
+
+`POST /recipes`
+
+    Creates a Recipe object given the specified json Recipe information.
+
+`GET /recipes`
+
+    Returns a list of all Recipes.
+
+`GET /recipes/<int:id>`
+
+    Returns information about the specified Recipe.
+
+`UPDATE /recipes/<int:id>`
+
+    Updates or Creates specified Recipe with given json Recipe object.
+
+`DELETE /recipes/<int:id>`
+
+    Deletes the specified Recipe from the database.
+
 
 
 ## TODO
 - [X] Add database schema
-- [ ] Add database connection module
+- [X] Add database connection module
 - [ ] Add API endpoints
   - [ ] Add create recipe functionality (POST)
   - [ ] Add read all/detail recipe functionality (GET)
