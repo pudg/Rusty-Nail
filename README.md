@@ -55,11 +55,12 @@ Build and run the project binary.
 ## TODO
 - [X] Add database schema
 - [X] Add database connection module
-- [ ] Add API endpoints
-  - [ ] Add create recipe functionality (POST)
-  - [ ] Add read all/detail recipe functionality (GET)
-  - [ ] Add update recipe functionality (PUT)
-  - [ ] Add delete recipe functionality (DELETE)
+- [X] Add API endpoints
+  - [X] Add create recipe functionality (POST)
+  - [X] Add read all/detail recipe functionality (GET)
+  - [X] Add update recipe functionality (PUT)
+  - [X] Add delete recipe functionality (DELETE)
+- [ ] Add security middleware
 - [ ] Add pagination
 - [ ] Add search filtering
 - [ ] Deploy

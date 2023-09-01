@@ -7,7 +7,11 @@ use actix_web::{delete, get, post, put, web, HttpResponse, Error};
 /// Returns a list of all Recipes database.
 #[get("/recipes")]
 async fn find_all() -> Result<HttpResponse, Error> {
-    Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT GET /find_all"})))
+    let all_recipes = web::block(|| Recipe::find_all())
+    .await??;
+
+    Ok(HttpResponse::Ok().json(all_recipes))
+    // Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT GET /find_all"})))
 }
 
 /// Returns information about specified Recipe if it exists.
@@ -17,7 +21,8 @@ async fn find_all() -> Result<HttpResponse, Error> {
 /// 
 #[get("/recipes/{id}")]
 async fn find(id: web::Path<i32>) -> Result<HttpResponse, Error> {
-    Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT GET /find/{id}"})))
+    let recipe = Recipe::find(id.into_inner())?;
+    Ok(HttpResponse::Ok().json(recipe))
 }
 
 /// Creates a new Recipe record in the database.
@@ -43,7 +48,8 @@ async fn find(id: web::Path<i32>) -> Result<HttpResponse, Error> {
 /// ```
 #[post("/recipes")]
 async fn create(recipes: web::Json<Recipe>) -> Result<HttpResponse, Error> {
-    Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT POST /recipes"})))
+    let recipe = Recipe::create(recipes.into_inner())?;
+    Ok(HttpResponse::Ok().json(recipe))
 }
 
 /// Creates or Updates a Recipe in the database.
@@ -53,7 +59,8 @@ async fn create(recipes: web::Json<Recipe>) -> Result<HttpResponse, Error> {
 ///     * `recipe` - A json object denoting Recipe to be updated or created.
 #[put("/recipes/{id}")]
 async fn update(id: web::Path<i32>, recipe: web::Json<Recipe>) -> Result<HttpResponse, Error> {
-    Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT PUT /recipes/{id}"})))
+    let recipe = Recipe::update(id.into_inner(), recipe.into_inner())?;
+    Ok(HttpResponse::Ok().json(recipe))
 }
 
 /// Deletes a recipe from the database.
@@ -62,7 +69,8 @@ async fn update(id: web::Path<i32>, recipe: web::Json<Recipe>) -> Result<HttpRes
 ///     * `id` - An integer denoting the Recipe to be deleted.
 #[delete("recipes/{id}")]
 async fn delete(id: web::Path<i32>) -> Result<HttpResponse, Error> {
-    Ok(HttpResponse::Ok().json(json!({"TODO": "IMPLEMENT DELETE /recipes/{id}"})))
+    let recipe = Recipe::delete(id.into_inner())?;
+    Ok(HttpResponse::Ok().json(json!({"deleted": recipe})))
 }
 
 /// Registers all route handlers.
