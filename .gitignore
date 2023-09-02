@@ -1,3 +1,4 @@
 .env
 target/
 all_drinks.csv
+*.pem

@@ -22,11 +22,20 @@ Apply migrations to generate `schema.rs` file.
 
     diesel migration run
 
+## Setup SSL integration.
+
+Generate `key.pem` and `cert.pem` for OpenSSL integration. [See Actix-Web documentation.](https://actix.rs/docs/server)
+
+
+
+
 ## Run
 Build and run the project binary.
 
     cargo build --release
     ./target/release/rusty_nail
+
+Visit [https://127.0.0.1:8080/recipes](https://127.0.0.1:8080/recipes)
 
 ## API
 
